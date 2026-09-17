@@ -1,23 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import Button from "@/components/Button";
+import Button from '@/components/Button';
 
 export default function FreeAdAuditPage() {
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
+    setSubmitting(true);
+    setError('');
 
-    const form = e.currentTarget;
-    const data = new FormData(form);
+    const formData = new FormData(e.currentTarget);
 
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_ID', {
+      const response = await fetch('https://formspree.io/f/mzezbere', {
         method: 'POST',
-        body: data,
+        body: formData,
         headers: {
           'Accept': 'application/json'
         }
@@ -26,40 +27,35 @@ export default function FreeAdAuditPage() {
       if (response.ok) {
         setSubmitted(true);
       } else {
-        alert('There was a problem submitting your request. Please try again or reach out via WhatsApp.');
+        setError('Something went wrong. Please try again or reach out via email.');
       }
     } catch {
-      alert('Network error. Please check your connection and try again.');
+      setError('Network error. Please check your connection and try again.');
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
-  };
+  }
 
   return (
-    <div className="space-y-16 py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="text-center space-y-4">
-        <div className="inline-block bg-slate-900 border border-slate-800 text-sky-400 text-xs font-semibold px-3 py-1.5 rounded-full">
-          No-Obligation Review
-        </div>
-        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white">
-          Request Your <span className="text-sky-400">Free Ad Audit</span>
+    <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+      <div className="text-center mb-12">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Request Your Free Ad Audit
         </h1>
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-          Let our team review your current Meta ad campaigns, landing page setup, or customer acquisition funnel and provide actionable feedback.
+        <p className="text-slate-400 text-lg">
+          Complete the details below to receive a comprehensive performance review of your current advertising systems.
         </p>
       </div>
 
       {submitted ? (
-        <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-10 text-center space-y-6">
-          <div className="w-16 h-16 bg-sky-500/10 border border-sky-500/30 text-sky-400 rounded-full flex items-center justify-center mx-auto text-2xl font-bold">
+        <div className="p-8 rounded-2xl bg-slate-900 border border-sky-500/50 text-center space-y-4">
+          <div className="w-12 h-12 bg-sky-500/20 text-sky-400 rounded-full flex items-center justify-center mx-auto text-xl font-bold">
             ✓
           </div>
-          <div className="space-y-2">
-            <h2 className="text-2xl font-bold text-white">Audit Request Received!</h2>
-            <p className="text-slate-400 max-w-md mx-auto text-sm leading-relaxed">
-              Thank you for reaching out. Our team will review your submission and get back to you within 24–48 hours with your custom insights.
-            </p>
-          </div>
+          <h3 className="text-2xl font-bold text-white">Audit Request Received</h3>
+          <p className="text-slate-300">
+            Thank you. Your request has been securely transmitted to NiorMedia. We will review your details and contact you shortly.
+          </p>
           <div className="pt-4">
             <Button href="/" variant="primary">
               Return Home
@@ -67,89 +63,144 @@ export default function FreeAdAuditPage() {
           </div>
         </div>
       ) : (
-        <div className="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-8 sm:p-10">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                  Your Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  placeholder="e.g. Sarah Jenkins"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  placeholder="sarah@yourbusiness.com"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors"
-                />
-              </div>
+        <form onSubmit={handleSubmit} className="space-y-6 bg-slate-950/80 p-8 rounded-2xl border border-slate-800">
+          {error && (
+            <div className="p-4 bg-red-950/50 border border-red-800 text-red-200 text-sm rounded-lg">
+              {error}
             </div>
+          )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="business" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                  Business Name *
-                </label>
-                <input
-                  type="text"
-                  id="business"
-                  name="business"
-                  required
-                  placeholder="e.g. Apex Roofing & Renovation"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors"
-                />
-              </div>
-              <div>
-                <label htmlFor="website" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                  Website URL *
-                </label>
-                <input
-                  type="text"
-                  id="website"
-                  name="website"
-                  required
-                  placeholder="https://yourbusiness.com"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-lg px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors"
-                />
-              </div>
-            </div>
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <label htmlFor="challenge" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-                What is your biggest current advertising or lead generation challenge? *
-              </label>
-              <textarea
-                id="challenge"
-                name="challenge"
-                rows={4}
-                required
-                placeholder="Tell us about your current ad spend, traffic quality, or lead conversion bottlenecks..."
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg p-4 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-sky-500 transition-colors resize-none"
-              ></textarea>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Your Name *</label>
+              <input 
+                type="text" 
+                name="name" 
+                required 
+                placeholder="John Smith" 
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+              />
             </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Business Name *</label>
+              <input 
+                type="text" 
+                name="businessName" 
+                required 
+                placeholder="Your Business Name" 
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+              />
+            </div>
+          </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold py-3.5 px-6 rounded-lg transition-colors text-sm tracking-wide disabled:opacity-50 cursor-pointer"
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Business Email *</label>
+              <input 
+                type="email" 
+                name="email" 
+                required 
+                placeholder="john@yourbusiness.com" 
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">WhatsApp / Phone *</label>
+              <input 
+                type="tel" 
+                name="phone" 
+                required 
+                placeholder="+1 (555) 000-0000" 
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Website URL *</label>
+              <input 
+                type="url" 
+                name="website" 
+                required 
+                placeholder="https://yourbusiness.com" 
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Country *</label>
+              <select 
+                name="country" 
+                required 
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+              >
+                <option value="">Select Country</option>
+                <option value="United States">United States</option>
+                <option value="Canada">Canada</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Business Type *</label>
+              <input 
+                type="text" 
+                name="businessType" 
+                required 
+                placeholder="e.g. E-commerce, Real Estate, Home Services" 
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-300 mb-2">Current Monthly Advertising Budget</label>
+              <select 
+                name="monthlyBudget" 
+                className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+              >
+                <option value="Not currently running ads">Not currently running ads</option>
+                <option value="Under $1,000 / mo">Under $1,000 / mo</option>
+                <option value="$1,000 - $5,000 / mo">$1,000 - $5,000 / mo</option>
+                <option value="$5,000 - $15,000 / mo">$5,000 - $15,000 / mo</option>
+                <option value="$15,000+ / mo">$15,000+ / mo</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-2">What does your business sell? *</label>
+            <input 
+              type="text" 
+              name="whatYouSell" 
+              required 
+              placeholder="Briefly describe your core products or services" 
+              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-300 mb-2">What is your biggest marketing challenge? *</label>
+            <textarea 
+              name="biggestChallenge" 
+              rows={4} 
+              required 
+              placeholder="Tell us what you want to achieve (e.g., lower cost per lead, get more online inquiries, scale e-commerce sales)..."
+              className="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 text-sm resize-none"
+            ></textarea>
+          </div>
+
+          <div className="pt-2">
+            <Button 
+              type="submit" 
+              variant="primary" 
+              className="w-full py-4 text-base font-semibold justify-center"
             >
-              {loading ? 'Submitting Request...' : 'Request Free Ad Audit'}
-            </button>
-          </form>
-        </div>
+              {submitting ? 'Submitting Request...' : 'Request My Free Audit'}
+            </Button>
+          </div>
+        </form>
       )}
     </div>
   );
