@@ -3,58 +3,40 @@ import Link from 'next/link';
 export default function WorkPage() {
   const projects = [
     {
-      title: "Faceless Studio AI",
-      category: "Full-Stack Web App / AI Automation",
-      description: "Automated script generation and ElevenLabs voiceover integration engine built with Next.js and FastAPI.",
-      metrics: "Reduced content creation time by 80%",
-      tag: "Live System",
-      gradient: "from-sky-500/20 via-indigo-500/20 to-transparent",
-      border: "border-sky-500/30",
-    },
-    {
-      title: "AI-Trader-OS",
-      category: "Algorithmic Analytics Dashboard",
-      description: "Next.js frontend paired with a Python FastAPI backend for tracking real-time market prediction metrics.",
-      metrics: "Optimized data processing pipeline",
-      tag: "SaaS Template",
-      gradient: "from-blue-500/25 via-sky-500/10 to-transparent",
-      border: "border-blue-500/30",
-    },
-    {
-      title: "Apex Roofing SaaS",
+      title: "Apex Home Services Funnel",
       category: "Local Service Growth System",
-      description: "High-converting modern landing page and automated lead capture funnel designed for home service providers.",
+      description: "High-converting modern landing page and automated lead capture funnel designed for home service providers to drive inbound calls.",
       metrics: "3x increase in quote conversion rates",
       tag: "Client Solution",
       gradient: "from-indigo-500/20 via-purple-500/20 to-transparent",
       border: "border-indigo-500/30",
     },
     {
-      title: "ApexRift Football Analytics",
-      category: "Statistical Prediction Engine",
-      description: "Next.js platform integrating Supabase authentication and complex data models for sports probability tracking.",
-      metrics: "Real-time consensus tracking",
-      tag: "Data Platform",
+      title: "PrimeCare Dental Pipeline",
+      category: "WhatsApp Automation & Booking",
+      description: "Integrated appointment booking pipeline connecting Meta ad traffic directly to an automated WhatsApp qualification flow.",
+      metrics: "65% reduction in cost per acquisition",
+      tag: "Conversion System",
       gradient: "from-sky-500/20 via-teal-500/20 to-transparent",
       border: "border-teal-500/30",
     },
     {
-      title: "Creator Studio AI",
-      category: "Digital Product Infrastructure",
-      description: "End-to-end web app featuring secure authentication and seamless Paystack payment gateway integration.",
-      metrics: "Automated digital delivery workflow",
-      tag: "Production Ready",
-      gradient: "from-purple-500/20 via-sky-500/20 to-transparent",
-      border: "border-purple-500/30",
+      title: "Metro Logistics Ad Scale",
+      category: "Meta Ads & Retargeting Engine",
+      description: "Full-funnel paid acquisition strategy structured to target regional shipping and commercial delivery clients.",
+      metrics: "4.2x average return on ad spend",
+      tag: "Growth Campaign",
+      gradient: "from-sky-500/20 via-indigo-500/20 to-transparent",
+      border: "border-sky-500/30",
     },
     {
-      title: "Interior Design Style Gallery",
-      category: "Interactive React Application",
-      description: "Dynamic style explorer and custom budget estimator built with Vite, React, and Tailwind CSS.",
-      metrics: "Enhanced user engagement & retention",
-      tag: "Interactive UI",
-      gradient: "from-blue-600/20 via-sky-400/20 to-transparent",
-      border: "border-blue-500/30",
+      title: "Vanguard Real Estate Portal",
+      category: "High-Performance Web Architecture",
+      description: "Lightning-fast property showcase platform featuring interactive filters and instant WhatsApp inquiry routing.",
+      metrics: "Sub-second load times & higher engagement",
+      tag: "Web Infrastructure",
+      gradient: "from-purple-500/20 via-sky-500/20 to-transparent",
+      border: "border-purple-500/30",
     }
   ];
 
@@ -71,12 +53,12 @@ export default function WorkPage() {
             Digital Systems Built for Scale
           </h1>
           <p className="text-slate-400 text-lg">
-            Explore our featured concept projects, AI workflows, and high-performance web applications engineered to convert visitors into paying customers.
+            Explore our high-performance web systems, automated lead funnels, and growth campaigns engineered to convert visitors into paying clients.
           </p>
         </div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div 
               key={index} 
