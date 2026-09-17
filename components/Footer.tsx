@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export default function Footer() {
-  const footerLinks = [
+  const primaryLinks = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
     { name: 'Work', href: '/work' },
@@ -9,6 +9,9 @@ export default function Footer() {
     { name: 'About', href: '/about' },
     { name: 'Free Ad Audit', href: '/free-ad-audit' },
     { name: 'Contact', href: '/contact' },
+  ];
+
+  const legalLinks = [
     { name: 'Privacy Policy', href: '/privacy' },
     { name: 'Terms of Service', href: '/terms' },
   ];
@@ -29,9 +32,16 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Quick Links</h4>
             <ul className="grid grid-cols-2 gap-2">
-              {footerLinks.map((link) => (
+              {primaryLinks.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-sm hover:text-white transition-colors">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+              {legalLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-sm font-medium text-sky-400 hover:underline">
                     {link.name}
                   </Link>
                 </li>
@@ -63,9 +73,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+        <div className="border-t border-slate-900 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>© {new Date().getFullYear()} NiorMedia. All rights reserved.</p>
-          <p className="mt-2 sm:mt-0">Remote Digital Service Business</p>
+          <div className="flex items-center gap-6">
+            <Link href="/privacy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-slate-300 transition-colors">Terms of Service</Link>
+            <span>Remote Digital Service Business</span>
+          </div>
         </div>
       </div>
     </footer>

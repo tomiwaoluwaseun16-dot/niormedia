@@ -1,84 +1,95 @@
-import Button from '@/components/Button';
-import SectionHeading from '@/components/SectionHeading';
+import Button from "@/components/Button";
+import SectionHeading from "@/components/SectionHeading";
 
 export default function AboutPage() {
+  const values = [
+    {
+      title: "Practical Execution",
+      description: "We focus on what actually works. No bloated tech stacks, unnecessary complexity, or vanity metrics—just robust digital systems engineered for business growth."
+    },
+    {
+      title: "Transparent Communication",
+      description: "No corporate jargon or confusion. You get clear updates, straightforward timelines, and direct access to your strategist at every stage."
+    },
+    {
+      title: "Conversion-First Mindset",
+      description: "Every website, landing page, and ad campaign we build is intentionally structured to guide visitors toward taking meaningful action."
+    },
+    {
+      title: "Reliable Remote Partnership",
+      description: "Operating seamlessly across the US, Canada, and the UK, we provide responsive, high-standard digital execution tailored to modern business needs."
+    }
+  ];
+
   return (
-    <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-      <SectionHeading
-        title="About NiorMedia"
-        subtitle="A specialized remote digital service business focused on modern websites, advertising systems, lead generation, and digital growth infrastructure."
-        centered={true}
-      />
-
-      <div className="space-y-12 mt-12">
-        <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-8">
-          <h2 className="text-2xl font-bold text-white mb-4">Who We Are</h2>
-          <p className="text-slate-300 leading-relaxed mb-4">
-            NiorMedia is an independent, remote digital service business built to help businesses in the United States, Canada, and the United Kingdom get discovered, attract high-intent customers, and convert their online traffic into real business outcomes.
-          </p>
-          <p className="text-slate-300 leading-relaxed">
-            We reject bloated tech stacks, confusing marketing jargon, and fabricated claims. Instead, we focus on engineering clean, reliable digital systems that work.
-          </p>
+    <div className="space-y-24 py-16">
+      {/* Header Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="inline-block bg-slate-900 border border-slate-800 text-sky-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+          About NiorMedia
         </div>
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6">
+          Building Digital Systems That <span className="text-sky-400">Drive Real Growth</span>
+        </h1>
+        <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
+          NiorMedia is a specialized remote digital service business helping companies across the US, Canada, and the UK establish credibility, attract qualified traffic, and convert customers.
+        </p>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-8">
-            <h3 className="text-xl font-bold text-white mb-3">Our Core Focus</h3>
-            <ul className="space-y-2 text-sm text-slate-300">
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                Website Design & Development
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                Meta Ads Management
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                Lead Generation Systems
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                WhatsApp Marketing & Conversion
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                Conversion Landing Pages
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
-                SEO & Google Business Optimization
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-8">
-            <h3 className="text-xl font-bold text-white mb-3">How We Operate</h3>
-            <p className="text-sm text-slate-300 leading-relaxed mb-4">
-              Operating fully remotely allows us to collaborate efficiently with businesses across North America and the UK, delivering high-performance work without unnecessary overhead.
+      {/* Story / Approach Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-8 sm:p-12 space-y-6">
+          <h2 className="text-2xl font-bold text-white">Our Mission & Approach</h2>
+          <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p>
+              In today's digital economy, having a basic online presence isn't enough. Businesses need structured, high-performance systems that actively attract attention, build trust, and turn prospects into paying clients.
             </p>
-            <p className="text-sm text-slate-300 leading-relaxed">
-              We maintain transparent communication, disciplined execution, and a strict commitment to honesty in every project we take on.
+            <p>
+              At NiorMedia, we bridge the gap between technical web development and disciplined digital advertising. Whether you need a lightning-fast responsive website, targeted Meta ad campaigns, or a streamlined lead generation funnel, our focus remains fixed on practical execution and measurable business outcomes.
+            </p>
+            <p>
+              We operate as a remote digital partner, collaborating with businesses internationally to deliver reliable, high-standard solutions without the overhead of traditional agencies.
             </p>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Core Values Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          title="What We Stand For"
+          subtitle="The guiding principles behind every project we build."
+          centered={true}
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          {values.map((value, index) => (
+            <div key={index} className="bg-slate-900/60 border border-slate-800/80 rounded-xl p-8">
+              <span className="text-sky-400 font-mono text-sm mb-3 block">0{index + 1}.</span>
+              <h3 className="text-xl font-bold text-white mb-2">{value.title}</h3>
+              <p className="text-sm text-slate-400 leading-relaxed">{value.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Bottom CTA */}
-      <div className="mt-20 text-center bg-slate-900/40 border border-slate-800 rounded-2xl p-10 max-w-4xl mx-auto">
-        <h3 className="text-2xl font-bold text-white mb-4">Let’s discuss your growth objectives</h3>
-        <p className="text-slate-400 mb-8 max-w-xl mx-auto">
-          Get in touch or request a free ad audit to see how we can help your business attract and convert more customers.
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-slate-900/60 border border-slate-800 rounded-2xl p-10">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+          Let’s Build Something Great Together
+        </h2>
+        <p className="text-slate-400 max-w-lg mx-auto mb-8 text-sm sm:text-base">
+          Request a free ad audit or contact our team to discuss your digital growth objectives.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Button href="/free-ad-audit" variant="primary">
             Get a Free Ad Audit
           </Button>
           <Button href="/contact" variant="outline">
-            Contact Our Team
+            Contact Us
           </Button>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
