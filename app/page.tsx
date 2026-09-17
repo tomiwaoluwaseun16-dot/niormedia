@@ -1,5 +1,3 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Link from "next/link";
 import GrowthDiagram from "@/components/visuals/GrowthDiagram";
 
@@ -28,10 +26,8 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-sky-500 selection:text-slate-950">
-      <Header />
-
-      <main className="flex-grow pt-28 pb-20">
+    <div className="flex flex-col selection:bg-sky-500 selection:text-slate-950">
+      <main className="flex-grow pt-12 pb-20">
         {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 text-center">
           <span className="inline-block px-3 py-1 bg-sky-500/10 border border-sky-500/20 rounded-full text-xs font-semibold text-sky-400 uppercase tracking-widest mb-4">
@@ -51,10 +47,10 @@ export default function Home() {
               Get a Free Ad Audit
             </Link>
             <Link
-              href="/work"
+              href="/portfolio"
               className="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm border border-slate-800 transition-colors"
             >
-              Explore Our Work
+              Explore Our Portfolio
             </Link>
           </div>
         </section>
@@ -113,8 +109,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }
