@@ -1,4 +1,7 @@
 import Link from 'next/link';
+import RealEstateDesktopMockup from "@/components/visuals/RealEstateDesktopMockup";
+import RealEstateMobileMockup from "@/components/visuals/RealEstateMobileMockup";
+import RealEstateFlowDiagram from "@/components/visuals/RealEstateFlowDiagram";
 
 export default function WorkPage() {
   const conceptProjects = [
@@ -11,6 +14,22 @@ export default function WorkPage() {
         "Automated qualification questionnaire flow",
         "Instant WhatsApp & CRM lead routing integration"
       ]
+    ,
+    visuals: (
+      <div className="mt-6 space-y-6 pt-6 border-t border-slate-800">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <RealEstateDesktopMockup />
+          </div>
+          <div>
+            <RealEstateMobileMockup />
+          </div>
+        </div>
+        <div>
+          <RealEstateFlowDiagram />
+        </div>
+      </div>
+    )
     },
     {
       title: "Dental Clinic Growth System",
@@ -64,7 +83,7 @@ export default function WorkPage() {
         {conceptProjects.map((project, index) => (
           <div 
             key={index} 
-            className="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between space-y-6 hover:border-slate-700 transition-colors"
+            className={`bg-slate-900/60 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between space-y-6 hover:border-slate-700 transition-colors ${index === 0 ? "md:col-span-2" : ""}`}
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
@@ -83,6 +102,9 @@ export default function WorkPage() {
             <div className="pt-4 border-t border-slate-800 space-y-3">
               <span className="text-xs font-semibold text-slate-300 uppercase tracking-wider">Included Architecture:</span>
               <ul className="space-y-2">
+                {/* Render optional interactive visuals for concept demonstration */}
+                {project.visuals && project.visuals}
+
                 {project.features.map((feature, fIndex) => (
                   <li key={fIndex} className="flex items-center text-xs text-slate-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mr-2 shrink-0"></span>
